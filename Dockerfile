@@ -93,6 +93,7 @@ ENV PATH="${SOFT}/samtools-${SAMTOOLS_VERSION}/bin:${PATH}"
 ENV SAMTOOLS="${SOFT}/samtools-${SAMTOOLS_VERSION}/bin/samtools"
 
 # BCFtools 1.24 (released 2026-07-09)
+# https://github.com/samtools/bcftools/releases/tag/1.24
 RUN curl -fsSL -o bcftools.tar.bz2 \
         "https://github.com/samtools/bcftools/releases/download/${BCFTOOLS_VERSION}/bcftools-${BCFTOOLS_VERSION}.tar.bz2" && \
     tar -xjf bcftools.tar.bz2 && \
@@ -108,5 +109,23 @@ RUN curl -fsSL -o bcftools.tar.bz2 \
 ENV PATH="${SOFT}/bcftools-${BCFTOOLS_VERSION}/bin:${PATH}"
 ENV BCFTOOLS_PLUGINS="${SOFT}/bcftools-${BCFTOOLS_VERSION}/libexec/bcftools"
 ENV BCFTOOLS="${SOFT}/bcftools-${BCFTOOLS_VERSION}/bin/bcftools"
+
+# VCFtools 0.1.17 (released 2025-05-15)
+# https://github.com/vcftools/vcftools/releases/tag/v0.1.17
+RUN curl -fsSL -o vcftools.tar.gz \
+        "https://github.com/vcftools/vcftools/releases/download/v${VCFTOOLS_VERSION}/vcftools-${VCFTOOLS_VERSION}.tar.gz" && \
+    tar -xzf vcftools.tar.gz && \
+    cd "vcftools-${VCFTOOLS_VERSION}" && \
+    ./configure \
+        --prefix="${SOFT}/vcftools-${VCFTOOLS_VERSION}" \
+        --with-pmdir=lib/perl5 && \
+    make -j"$(nproc)" && \
+    make install && \
+    cd /tmp && \
+    rm -rf vcftools.tar.gz "vcftools-${VCFTOOLS_VERSION}"
+
+ENV PATH="${SOFT}/vcftools-${VCFTOOLS_VERSION}/bin:${PATH}"
+ENV PERL5LIB="${SOFT}/vcftools-${VCFTOOLS_VERSION}/lib/perl5"
+ENV VCFTOOLS="${SOFT}/vcftools-${VCFTOOLS_VERSION}/bin/vcftools"
 
 CMD ["/bin/bash"]
