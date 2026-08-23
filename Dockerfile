@@ -75,4 +75,21 @@ ENV TABIX="${SOFT}/htslib-${HTSLIB_VERSION}/bin/tabix"
 ENV ANNOTTSV="${SOFT}/htslib-${HTSLIB_VERSION}/bin/annot-tsv"
 ENV REFCACHE="${SOFT}/htslib-${HTSLIB_VERSION}/bin/ref-cache"
 
+# SAMtools 1.24 (released 2026-07-09)
+# https://github.com/samtools/samtools/releases/tag/1.24
+RUN curl -fsSL -o samtools.tar.bz2 \
+        "https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2" && \
+    tar -xjf samtools.tar.bz2 && \
+    cd "samtools-${SAMTOOLS_VERSION}" && \
+    ./configure \
+        --prefix="${SOFT}/samtools-${SAMTOOLS_VERSION}" \
+        --with-htslib="${SOFT}/htslib-${HTSLIB_VERSION}" && \
+    make -j"$(nproc)" && \
+    make install && \
+    cd /tmp && \
+    rm -rf samtools.tar.bz2 "samtools-${SAMTOOLS_VERSION}"
+
+ENV PATH="${SOFT}/samtools-${SAMTOOLS_VERSION}/bin:${PATH}"
+ENV SAMTOOLS="${SOFT}/samtools-${SAMTOOLS_VERSION}/bin/samtools"
+
 CMD ["/bin/bash"]
