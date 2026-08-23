@@ -92,4 +92,21 @@ RUN curl -fsSL -o samtools.tar.bz2 \
 ENV PATH="${SOFT}/samtools-${SAMTOOLS_VERSION}/bin:${PATH}"
 ENV SAMTOOLS="${SOFT}/samtools-${SAMTOOLS_VERSION}/bin/samtools"
 
+# BCFtools 1.24 (released 2026-07-09)
+RUN curl -fsSL -o bcftools.tar.bz2 \
+        "https://github.com/samtools/bcftools/releases/download/${BCFTOOLS_VERSION}/bcftools-${BCFTOOLS_VERSION}.tar.bz2" && \
+    tar -xjf bcftools.tar.bz2 && \
+    cd "bcftools-${BCFTOOLS_VERSION}" && \
+    ./configure \
+        --prefix="${SOFT}/bcftools-${BCFTOOLS_VERSION}" \
+        --with-htslib="${SOFT}/htslib-${HTSLIB_VERSION}" && \
+    make -j"$(nproc)" && \
+    make install && \
+    cd /tmp && \
+    rm -rf bcftools.tar.bz2 "bcftools-${BCFTOOLS_VERSION}"
+
+ENV PATH="${SOFT}/bcftools-${BCFTOOLS_VERSION}/bin:${PATH}"
+ENV BCFTOOLS_PLUGINS="${SOFT}/bcftools-${BCFTOOLS_VERSION}/libexec/bcftools"
+ENV BCFTOOLS="${SOFT}/bcftools-${BCFTOOLS_VERSION}/bin/bcftools"
+
 CMD ["/bin/bash"]
