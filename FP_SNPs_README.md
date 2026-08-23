@@ -121,7 +121,7 @@ The reference genome is mounted into the container at run time:
 docker run --rm \
     -v /mnt/data/ref/GRCh38.d1.vd1_mainChr/sepChrs:/ref/GRCh38.d1.vd1_mainChr/sepChrs:ro \
     -v "$PWD":/work -w /work \
-    bioinfo:1.1 \
+    bioinfo:1.0 \
     restore_reference_alleles.py \
         -i FP_SNPs_10k_GB38_twoAllelsFormat.tsv \
         -o FP_SNPs_10k_GB38_RefAlt.tsv \
