@@ -1,0 +1,46 @@
+2026-08-23 16:33:25 | INFO     | Input: FP_SNPs_10k_GB38_twoAllelsFormat.tsv
+2026-08-23 16:33:25 | INFO     | Output: FP_SNPs_10k_GB38_RefAlt.tsv
+2026-08-23 16:33:25 | INFO     | Reference: /ref/GRCh38.d1.vd1_mainChr/sepChrs
+2026-08-23 16:33:25 | INFO     | Log: restore_reference_alleles.log
+2026-08-23 16:33:25 | INFO     | Strand flipping: disabled
+2026-08-23 16:33:25 | INFO     | Header validated.
+2026-08-23 16:33:25 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr1.fa.
+2026-08-23 16:33:25 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr2.fa.
+2026-08-23 16:33:25 | INFO     | Processed 1000 variants.
+2026-08-23 16:33:25 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr3.fa.
+2026-08-23 16:33:25 | INFO     | Processed 2000 variants.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr4.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr5.fa.
+2026-08-23 16:33:26 | INFO     | Processed 3000 variants.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr6.fa.
+2026-08-23 16:33:26 | INFO     | Processed 4000 variants.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr7.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr8.fa.
+2026-08-23 16:33:26 | INFO     | Processed 5000 variants.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr9.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr10.fa.
+2026-08-23 16:33:26 | INFO     | Processed 6000 variants.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr11.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr12.fa.
+2026-08-23 16:33:26 | INFO     | Processed 7000 variants.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr13.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr14.fa.
+2026-08-23 16:33:26 | INFO     | Processed 8000 variants.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr15.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr16.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr17.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr18.fa.
+2026-08-23 16:33:26 | INFO     | Processed 9000 variants.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr19.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr20.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr21.fa.
+2026-08-23 16:33:26 | INFO     | Opened reference file /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr22.fa.
+2026-08-23 16:33:26 | INFO     | Processed 10000 variants.
+2026-08-23 16:33:26 | INFO     | Summary:
+2026-08-23 16:33:26 | INFO     |   variants read: 10000
+2026-08-23 16:33:26 | INFO     |   reference_is_allele1: 3650
+2026-08-23 16:33:26 | INFO     |   reference_is_allele2: 6341
+2026-08-23 16:33:26 | INFO     |   strand_mismatch: 9
+2026-08-23 16:33:26 | INFO     |   written: 9991
+2026-08-23 16:33:26 | INFO     | Finished in 1.33 s.
+2026-08-23 16:33:26 | SUCCESS  | Done.
