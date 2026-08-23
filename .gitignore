@@ -1,0 +1,12 @@
+# Task description — confidential, not published
+*.pdf
+
+# Reference genome and other large inputs
+*.fa
+*.fa.fai
+*.tar.gz
+*.tar.bz2
+
+# Python
+__pycache__/
+*.pyc
