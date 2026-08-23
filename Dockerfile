@@ -29,7 +29,7 @@ RUN apt-get update && \
 
 # libdeflate 1.25 (released 2025-11-01)
 # https://github.com/ebiggers/libdeflate/releases/tag/v1.25
-RUN curl -fsSL -o libdeflate.tar.gz \
+RUN curl -fsSL --retry 5 --retry-all-errors -o libdeflate.tar.gz \
         "https://github.com/ebiggers/libdeflate/releases/download/v${LIBDEFLATE_VERSION}/libdeflate-${LIBDEFLATE_VERSION}.tar.gz" && \
     tar -xzf libdeflate.tar.gz && \
     cd "libdeflate-${LIBDEFLATE_VERSION}" && \
@@ -51,7 +51,7 @@ ENV LIBDEFLATEGUNZIP="${SOFT}/libdeflate-${LIBDEFLATE_VERSION}/bin/libdeflate-gu
 
 # HTSlib 1.24 (released 2026-07-09)
 # https://github.com/samtools/htslib/releases/tag/1.24
-RUN curl -fsSL -o htslib.tar.bz2 \
+RUN curl -fsSL --retry 5 --retry-all-errors -o htslib.tar.bz2 \
         "https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2" && \
     tar -xjf htslib.tar.bz2 && \
     cd "htslib-${HTSLIB_VERSION}" && \
@@ -77,7 +77,7 @@ ENV REFCACHE="${SOFT}/htslib-${HTSLIB_VERSION}/bin/ref-cache"
 
 # SAMtools 1.24 (released 2026-07-09)
 # https://github.com/samtools/samtools/releases/tag/1.24
-RUN curl -fsSL -o samtools.tar.bz2 \
+RUN curl -fsSL --retry 5 --retry-all-errors -o samtools.tar.bz2 \
         "https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2" && \
     tar -xjf samtools.tar.bz2 && \
     cd "samtools-${SAMTOOLS_VERSION}" && \
@@ -94,7 +94,7 @@ ENV SAMTOOLS="${SOFT}/samtools-${SAMTOOLS_VERSION}/bin/samtools"
 
 # BCFtools 1.24 (released 2026-07-09)
 # https://github.com/samtools/bcftools/releases/tag/1.24
-RUN curl -fsSL -o bcftools.tar.bz2 \
+RUN curl -fsSL --retry 5 --retry-all-errors -o bcftools.tar.bz2 \
         "https://github.com/samtools/bcftools/releases/download/${BCFTOOLS_VERSION}/bcftools-${BCFTOOLS_VERSION}.tar.bz2" && \
     tar -xjf bcftools.tar.bz2 && \
     cd "bcftools-${BCFTOOLS_VERSION}" && \
@@ -112,7 +112,7 @@ ENV BCFTOOLS="${SOFT}/bcftools-${BCFTOOLS_VERSION}/bin/bcftools"
 
 # VCFtools 0.1.17 (released 2025-05-15)
 # https://github.com/vcftools/vcftools/releases/tag/v0.1.17
-RUN curl -fsSL -o vcftools.tar.gz \
+RUN curl -fsSL --retry 5 --retry-all-errors -o vcftools.tar.gz \
         "https://github.com/vcftools/vcftools/releases/download/v${VCFTOOLS_VERSION}/vcftools-${VCFTOOLS_VERSION}.tar.gz" && \
     tar -xzf vcftools.tar.gz && \
     cd "vcftools-${VCFTOOLS_VERSION}" && \
