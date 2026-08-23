@@ -27,4 +27,26 @@ RUN apt-get update && \
         libncurses-dev && \
     rm -rf /var/lib/apt/lists/*
 
+    # libdeflate 1.25 (released 2025-11-01)
+# https://github.com/ebiggers/libdeflate/releases/tag/v1.25
+RUN curl -fsSL -o libdeflate.tar.gz \
+        "https://github.com/ebiggers/libdeflate/releases/download/v${LIBDEFLATE_VERSION}/libdeflate-${LIBDEFLATE_VERSION}.tar.gz" && \
+    tar -xzf libdeflate.tar.gz && \
+    cd "libdeflate-${LIBDEFLATE_VERSION}" && \
+    cmake -B build \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX="${SOFT}/libdeflate-${LIBDEFLATE_VERSION}" && \
+    cmake --build build -j"$(nproc)" && \
+    cmake --install build && \
+    cd /tmp && \
+    rm -rf libdeflate.tar.gz "libdeflate-${LIBDEFLATE_VERSION}"
+
+ENV PATH="${SOFT}/libdeflate-${LIBDEFLATE_VERSION}/bin:${PATH}"
+ENV LD_LIBRARY_PATH="${SOFT}/libdeflate-${LIBDEFLATE_VERSION}/lib"
+ENV LIBRARY_PATH="${SOFT}/libdeflate-${LIBDEFLATE_VERSION}/lib"
+ENV C_INCLUDE_PATH="${SOFT}/libdeflate-${LIBDEFLATE_VERSION}/include"
+ENV PKG_CONFIG_PATH="${SOFT}/libdeflate-${LIBDEFLATE_VERSION}/lib/pkgconfig"
+ENV LIBDEFLATEGZIP="${SOFT}/libdeflate-${LIBDEFLATE_VERSION}/bin/libdeflate-gzip"
+ENV LIBDEFLATEGUNZIP="${SOFT}/libdeflate-${LIBDEFLATE_VERSION}/bin/libdeflate-gunzip"
+
 CMD ["/bin/bash"]
