@@ -29,7 +29,9 @@ RUN apt-get update && \
         python3 \
         python3-dev \
         python3-pip \
-        python3-setuptools && \
+        python3-setuptools \
+        python3-click \
+        python3-loguru && \
     rm -rf /var/lib/apt/lists/*
 
 # libdeflate 1.25 (released 2025-11-01)
@@ -148,5 +150,12 @@ RUN curl -fsSL --retry 5 --retry-all-errors -o pysam.tar.gz \
     rm -rf pysam.tar.gz "pysam-${PYSAM_VERSION}"
 
 ENV PYTHONPATH="${SOFT}/pysam-${PYSAM_VERSION}"
+
+# Copy the conversion script into the image.
+COPY restore_reference_alleles.py ${SOFT}/scripts/restore_reference_alleles.py
+RUN chmod +x "${SOFT}/scripts/restore_reference_alleles.py"
+
+ENV PATH="${SOFT}/scripts:${PATH}"
+ENV RESTORE_REFERENCE_ALLELES="${SOFT}/scripts/restore_reference_alleles.py"
 
 CMD ["/bin/bash"]
