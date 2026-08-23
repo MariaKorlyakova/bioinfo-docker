@@ -5,6 +5,7 @@ ARG HTSLIB_VERSION=1.24
 ARG SAMTOOLS_VERSION=1.24
 ARG BCFTOOLS_VERSION=1.24
 ARG VCFTOOLS_VERSION=0.1.17
+ARG PYSAM_VERSION=0.24.0
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV SOFT=/soft
@@ -24,7 +25,11 @@ RUN apt-get update && \
         liblzma-dev \
         libcurl4-openssl-dev \
         libssl-dev \
-        libncurses-dev && \
+        libncurses-dev \
+        python3 \
+        python3-dev \
+        python3-pip \
+        python3-setuptools && \
     rm -rf /var/lib/apt/lists/*
 
 # libdeflate 1.25 (released 2025-11-01)
@@ -127,5 +132,21 @@ RUN curl -fsSL --retry 5 --retry-all-errors -o vcftools.tar.gz \
 ENV PATH="${SOFT}/vcftools-${VCFTOOLS_VERSION}/bin:${PATH}"
 ENV PERL5LIB="${SOFT}/vcftools-${VCFTOOLS_VERSION}/lib/perl5"
 ENV VCFTOOLS="${SOFT}/vcftools-${VCFTOOLS_VERSION}/bin/vcftools"
+
+# pysam 0.24.0 (released 2026-04-27)
+# https://github.com/pysam-developers/pysam/releases/tag/v0.24.0
+RUN curl -fsSL --retry 5 --retry-all-errors -o pysam.tar.gz \
+        "https://files.pythonhosted.org/packages/source/p/pysam/pysam-${PYSAM_VERSION}.tar.gz" && \
+    tar -xzf pysam.tar.gz && \
+    cd "pysam-${PYSAM_VERSION}" && \
+    HTSLIB_MODE=external \
+    HTSLIB_LIBRARY_DIR="${SOFT}/htslib-${HTSLIB_VERSION}/lib" \
+    HTSLIB_INCLUDE_DIR="${SOFT}/htslib-${HTSLIB_VERSION}/include" \
+    pip3 install --no-cache-dir --no-build-isolation \
+        --target "${SOFT}/pysam-${PYSAM_VERSION}" . && \
+    cd /tmp && \
+    rm -rf pysam.tar.gz "pysam-${PYSAM_VERSION}"
+
+ENV PYTHONPATH="${SOFT}/pysam-${PYSAM_VERSION}"
 
 CMD ["/bin/bash"]
